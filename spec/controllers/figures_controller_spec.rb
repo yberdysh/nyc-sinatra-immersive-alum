@@ -1,7 +1,12 @@
 require 'spec_helper'
+require 'pry'
 
 describe FiguresController do
   before do
+    # Figure.destroy_all
+    # Title.destroy_all
+    # Landmark.destroy_all
+    # FigureTitle.destroy_all
     queenb = Figure.create(:name => "Beyonce")
     kanye = Figure.create(:name => "Kanye")
     bqe = Landmark.create(name: 'BQE', year_completed: 1961)
@@ -29,6 +34,7 @@ describe FiguresController do
   it "allows you to create a new figure with a title" do
     visit '/figures/new'
     fill_in :figure_name, :with => "Doctor Who"
+    # binding.pry
     check "title_#{Title.first.id}"
     click_button "Create New Figure"
     figure = Figure.last
